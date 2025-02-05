@@ -1,0 +1,8 @@
+
+/*    //this is only for using exceptions not being called as part of a constructor. would be in Term.java
+ * 		public void catchZeros() {
+    	if (coefficient ==0) {
+    		throw new ExceptionCoefficientZero();
+    	}
+    }
+    	else return; */

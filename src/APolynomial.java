@@ -40,26 +40,13 @@
 	 
 	 public boolean removeTerm(Term t) {
 		 for (int i = 0; i < polynomial.size(); i++) {
-			 System.out.println("i: " + i);
-			 System.out.println("polynomial[i]: " + polynomial.get(i));
-			 System.out.println("poly size: " + polynomial.size());
-			 System.out.println("t: " + t);
-			 
-			 //once one term is removed, won't go back in the if clause on consequent loops. why?!
-			 if (polynomial.get(i) == t) {
-			 //if (true) {
+
+			 if (t.getCoefficient() == polynomial.get(i).getCoefficient() && t.getVariable() == polynomial.get(i).getVariable() && t.getExponent() == polynomial.get(i).getExponent()) {
 				 polynomial.remove(i);
 				 System.out.println("removed index: " + i);
 				 i--;
 				 System.out.println("i after i--: "+ i);
-			 }
-			 System.out.println("-post if statement-");
-			 System.out.println("i: " + i);
-			 if (i != -1) System.out.println("polynomial[i]: " + polynomial.get(i));
-			 System.out.println("poly size: " + polynomial.size());
-			 System.out.println("t: " + t);
-			 System.out.println("-----------------------------"); //debugging
-			 
+			 }			 
 		 }
 		 return true;
 	 } 

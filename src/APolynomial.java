@@ -2,28 +2,30 @@
  
  public class APolynomial implements Polynomial {
  
-	 private ArrayList<Term> polynomial = new ArrayList<Term>();
-	 //private int polynomialLength = polynomial.size();
+	 private Term[] polynomial = new Term[100];
+	 //private int polynomialLength = polynomial.length;
 	 
-	 public void setPolynomial(ArrayList<Term> polynomial){
-		 if (polynomial.size() <= 100) {
-			this.polynomial = polynomial;
-			//this.polynomialLength = polynomial.size();
+	 public void setPolynomial(Term[] Polynomial){
+		 if (polynomial.length <= 100) {
+			 for (int i=0; i < Polynomial.length; i++) {
+				 this.polynomial[i] = Polynomial[i];
+			 }
+			//this.polynomial = polynomial;
+			//this.polynomialLength = polynomial.length;
 		 }
 		 else
 			 System.out.println("polynomial exceeds max array length of 100");
 	 }
 	 
-	 public ArrayList<Term> getPolynomial() {
+	 public Term[] getPolynomial() {
 		 return this.polynomial;
 	 }
 	 
 	 //exercise 6
 	 public boolean addTerm(Term t) {
-		 if (polynomial.size() < 100){
-			 //polynomial[polynomialLength] = t;
-			 polynomial.add(t);
-			 //polynomialLength = polynomial.size();
+		 if (polynomial.length <= 100){
+			 int insertIndex = this.getNumberTerms(); 
+			 polynomial[insertIndex] = t;
 			 return true;
 		 }
 		 else {
@@ -34,19 +36,23 @@
 	 
 	 //exercise 7
 	 public int getNumberTerms() {
-		 return polynomial.size();
+		 int count = 0;
+		 for (int i=0; i < polynomial.length; i++) {
+			 if (polynomial[i] != null) count++; 
+		 }
+		 return count;
 	 }
 
 	 
 	 public boolean removeTerm(Term t) {
-		 for (int i = 0; i < polynomial.size(); i++) {
+		 for (int i = 0; i < polynomial.length; i++) {
 			 System.out.println("i: " + i);
-			 System.out.println("polynomial[i]: " + polynomial.get(i));
-			 System.out.println("poly size: " + polynomial.size());
+			 System.out.println("polynomial[i]: " + polynomial[i]);
+			 System.out.println("poly size: " + polynomial.length);
 			 System.out.println("t: " + t);
 			 
 			 //once one term is removed, won't go back in the if clause on consequent loops. why?!
-			 if (polynomial.get(i) == t) {
+			 if (polynomial[i] == t) {
 			 //if (true) {
 				 polynomial.remove(i);
 				 System.out.println("removed index: " + i);
@@ -55,14 +61,22 @@
 			 }
 			 System.out.println("-post if statement-");
 			 System.out.println("i: " + i);
-			 if (i != -1) System.out.println("polynomial[i]: " + polynomial.get(i));
-			 System.out.println("poly size: " + polynomial.size());
+			 if (i != -1) System.out.println("polynomial[i]: " + polynomial[i]);
+			 System.out.println("poly size: " + polynomial.length);
 			 System.out.println("t: " + t);
 			 System.out.println("-----------------------------"); //debugging
 			 
 		 }
 		 return true;
-	 } 
+	 }
+	 
+	 public String pToString() {
+		 String p_string = "";
+			for (int i=0; i < this.getNumberTerms(); i++) {
+				p_string = p_string + polynomial[i].toString() + ", ";
+			}
+		return p_string;
+	 }
 	 
 	 
 // public int[] getExponents(); 

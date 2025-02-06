@@ -19,41 +19,46 @@ public class Driver {
 		catch (ExceptionCoefficientZero e) {
 		}
 		
-/*
+
 		System.out.println("t0: "+ t0);
 		System.out.println("t1: "+ t1);
 		System.out.println("t2: "+ t2);
 		System.out.println("t3: "+ t3);
 		System.out.println("t3 string: " + t3.toString());
-*/
+
 		
 		
 		//Exercise 5
 		APolynomial AP = new APolynomial();
 		
-		ArrayList<Term> inputArray = new ArrayList<Term>();
-		inputArray.add(t0);
-		inputArray.add(t1);
-		inputArray.add(t2);
+		Term[] inputArray = {t0, t1, t2};
 		
 		AP.setPolynomial(inputArray);
-		ArrayList<Term> p1 = AP.getPolynomial();
-		//String p1_string = p1[1].toString();
+		Term[] p1 = AP.getPolynomial();
 		
-		System.out.println("p1: " + p1);
+		//convert to string
+		String p1_string = "";
+		for (int i=0; i < AP.getNumberTerms(); i++) {
+			p1_string = p1_string + p1[i].toString() + ", ";
+		}
+		System.out.println("p1: " + p1_string);
 		System.out.println("p1 length: " + AP.getNumberTerms());
 		
 		
 		
 		//Exercise 6
 		AP.addTerm(t3);
-		ArrayList<Term> p2 = AP.getPolynomial();
-		System.out.println("p2: " + p2);	
-		System.out.println("p2 length: " + p2.size());
-		System.out.println("p2 length inside AP: " + AP.getNumberTerms());
+		Term[] p2 = AP.getPolynomial();
 		
-		System.out.println(AP.getNumberTerms());
+		//convert to string
+		String p2_string = "";
+		for (int i=0; i < AP.getNumberTerms(); i++) {
+			p2_string = p2_string + p2[i].toString() + ", ";
+		}
+		System.out.println("p2: " + p2_string);
+		System.out.println("p2 length: " + AP.getNumberTerms());
 		
+		/*
 		//Exercise 8
 		AP.addTerm(t1);
 		
@@ -61,6 +66,7 @@ public class Driver {
 		AP.removeTerm(t1);
 		System.out.println(AP.getPolynomial());
 	
+		*/
 	}
 	
 	

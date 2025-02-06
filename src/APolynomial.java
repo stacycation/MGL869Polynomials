@@ -20,7 +20,7 @@ public class APolynomial implements Polynomial {
 	 
 	 //Exercise 6
 	 public boolean addTerm(Term t) {
-		 if (polynomial.length <= 100){
+		 if (polynomial.length <= 100 || polynomial == null){
 			 int insertIndex = this.getNumberTerms(); 
 			 polynomial[insertIndex] = t;
 			 return true;

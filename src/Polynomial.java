@@ -7,4 +7,6 @@ public interface Polynomial {
 	public char[] getVariables();
 	public Term[] getTerms(char variable, int exponent);
 	public Term[] getAllTerms();
+//	public void setPolynomial(Term[] Polynomial);
+	public String toString();
 }

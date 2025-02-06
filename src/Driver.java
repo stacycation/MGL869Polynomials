@@ -12,7 +12,7 @@ public class Driver {
 		
 		//Exercises 1,2,3
 		try {
-			t0 = new Term(3,'y',3);
+			t0 = new Term(3,'y',2);
 			t1 = new Term(-2,'y',2);
 			t2 = new Term(4,'x',1);
 			t3 = new Term(8,' ', 0);
@@ -76,6 +76,13 @@ public class Driver {
 		
 		//Exercise 14
 		System.out.println("----------------------");
+		AP.addTerm(t2);
+		System.out.println("poly: " + AP.toString());
+		
+		Mathematics m = new Mathematics();
+		m.simplify(AP);
+		System.out.println("poly: " + AP.toString());
+		
 		System.out.println("----------------------");
 	}
 	

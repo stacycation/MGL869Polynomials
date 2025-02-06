@@ -2,23 +2,23 @@ import java.util.HashMap;
 
 public class Mathematics {
 	
-	private Polynomial polynomialInput;
+	private Polynomial polynomial;
 	private Polynomial polynomialSimplified;
-	private Term[] polynomialInputArray;
+	private Term[] polynomialArray;
 	
 	//Exercise 14 - has bugs
 	public Polynomial simplify(Polynomial polynomial) {
-		this.polynomialInput = polynomial;
-		polynomialInputArray = polynomial.getAllTerms();
+		this.polynomial = polynomial;
+		polynomialArray = polynomial.getAllTerms();
 		
 		String varExpKey = "";
 
 		HashMap<String, Double> simplifyTable = new HashMap<String, Double>();
 
 		//fill HashMap simplifyTable
-		for (int i=0; i< polynomialInput.getNumberTerms(); i++){
-			char var = polynomialInputArray[i].getVariable();
-			int exp = polynomialInputArray[i].getExponent();
+		for (int i=0; i< polynomial.getNumberTerms(); i++){
+			char var = polynomialArray[i].getVariable();
+			int exp = polynomialArray[i].getExponent();
 
 			varExpKey = var + Integer.toString(exp);
 			/*
@@ -28,7 +28,7 @@ public class Mathematics {
 			System.out.println("varExpKey: " + varExpKey);
 			*/
 			
-			double coeff = polynomialInputArray[i].getCoefficient();
+			double coeff = polynomialArray[i].getCoefficient();
 			
 			if (simplifyTable.containsKey(varExpKey)){
 				coeff = coeff + simplifyTable.get(varExpKey);
@@ -39,26 +39,26 @@ public class Mathematics {
 		}
 
 		
-		//Create new simplified polynomialInput Array
+		//Create new simplified polynomial Array
 		int simplifiedSize = simplifyTable.size();
 		Term[] simplifiedPoly = new Term[simplifiedSize];
 
 		int i=0;
 		for (String j : simplifyTable.keySet()){
-			System.out.println("i: " + i);
-			System.out.println("key: " + j);
-			System.out.println("value: "+ simplifyTable.get(j));
+			//System.out.println("i: " + i);
+			//System.out.println("key: " + j);
+			//System.out.println("value: "+ simplifyTable.get(j));
 			double coeff = simplifyTable.get(j);
 			char var = j.charAt(0);
 			String s_exp = j.substring(1);
-			System.out.println("s_exp" + s_exp);
+			//System.out.println("s_exp" + s_exp);
 			int exp;
 			if (s_exp != "") {
 			//	System.out.println("I'm in if s_exp");
 				exp = Integer.valueOf(s_exp);
 			}
 			else exp = 0;
-			System.out.println("coeff: "+ coeff +", var: "+ var +",exp: " + exp);
+			//System.out.println("coeff: "+ coeff +", var: "+ var +",exp: " + exp);
 		
 			Term simpTerm = null;
 			try {
@@ -66,39 +66,39 @@ public class Mathematics {
 			}
 			catch (ExceptionCoefficientZero e) {
 			}
-			System.out.println("simpTerm: " + simpTerm);
+			//System.out.println("simpTerm: " + simpTerm);
 			
 			simplifiedPoly[i]= simpTerm;
 			i++;
 		}
 		
 		//put polynomial Array into polynomialSimplified for output
-		//Polynomial polynomialSimplified = new Polynomial();
-		//polynomialSimplified = null;
-		//polynomialSimplified.setPolynomial(simplifiedPoly); 
 		
-		//!!bug with the indexing on removeTerms()
+		Term[] unsimplifiedTerms = polynomial.getAllTerms();
 		
-		Term[] unsimplifiedTerms = polynomialInput.getAllTerms();
-		System.out.println("unsimplifiedTerms[]: " + unsimplifiedTerms.toString() +",length: " + unsimplifiedTerms.length);
-		for (int m=0; m<polynomialInput.getNumberTerms(); m++) {
-			System.out.println("poly: " + polynomialInput.toString());
+		int lengthUnsimplified = polynomial.getNumberTerms();
+		//System.out.println("unsimplifiedTerms[]: " + unsimplifiedTerms.toString() +",lengthUnsimplified: " + lengthUnsimplified);
+		
+		for (int m=0; m<lengthUnsimplified; m++) {
+			/*System.out.println("poly: " + polynomial.toString());
+			System.out.println("m: "+m);
+			System.out.println("lengthUnsimplified: " + lengthUnsimplified);
 			System.out.println("unsimplifiedTerms[m]: "+ unsimplifiedTerms[m]);
-			polynomialInput.removeTerm(unsimplifiedTerms[m]);
-			System.out.println("poly: " + polynomialInput.toString());
+			*/
+			polynomial.removeTerm(unsimplifiedTerms[0]);
+			//System.out.println("poly: " + polynomial.toString());
 		}
-		
 		
 		for (int k=0; k<simplifiedPoly.length; k++) {
-			polynomialInput.addTerm(simplifiedPoly[k]);
+			polynomial.addTerm(simplifiedPoly[k]);
 		}
 		
-		return polynomialInput;
+		return polynomial;
 	}
 	
 	//Exercise 15
 	public Polynomial sumPolynomials(Polynomial polynomial1, Polynomial polynomial2) {
-		
+		return polynomial; //placeholder for code
 	}
 	
 }

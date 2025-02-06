@@ -1,4 +1,4 @@
- import java.util.ArrayList;
+import java.util.Arrays;
  
  public class APolynomial implements Polynomial {
  
@@ -8,17 +8,13 @@
 	 public void setPolynomial(Term[] Polynomial){
 		 if (polynomial.length <= 100) {
 			 for (int i=0; i < Polynomial.length; i++) {
-				 this.polynomial[i] = Polynomial[i];
+				 polynomial[i] = Polynomial[i];
 			 }
 			//this.polynomial = polynomial;
 			//this.polynomialLength = polynomial.length;
 		 }
 		 else
 			 System.out.println("polynomial exceeds max array length of 100");
-	 }
-	 
-	 public Term[] getPolynomial() {
-		 return this.polynomial;
 	 }
 	 
 	 //exercise 6
@@ -45,47 +41,111 @@
 
 	 
 	 public boolean removeTerm(Term t) {
-		 for (int i = 0; i < polynomial.length; i++) {
-			 System.out.println("i: " + i);
-			 System.out.println("polynomial[i]: " + polynomial[i]);
-			 System.out.println("poly size: " + polynomial.length);
-			 System.out.println("t: " + t);
-			 
-			 //once one term is removed, won't go back in the if clause on consequent loops. why?!
-			 if (polynomial[i] == t) {
-			 //if (true) {
-				 polynomial.remove(i);
-				 System.out.println("removed index: " + i);
+		 for (int i = 0; i < this.getNumberTerms(); i++) {
+			 if (t.getCoefficient() == polynomial[i].getCoefficient() && t.getVariable() == polynomial[i].getVariable() && t.getExponent() == polynomial[i].getExponent()) {
+				 for (int j=i; j < this.getNumberTerms(); j++) {
+					 polynomial[j] = polynomial[j+1];
+				 }
 				 i--;
-				 System.out.println("i after i--: "+ i);
-			 }
-			 System.out.println("-post if statement-");
-			 System.out.println("i: " + i);
-			 if (i != -1) System.out.println("polynomial[i]: " + polynomial[i]);
-			 System.out.println("poly size: " + polynomial.length);
-			 System.out.println("t: " + t);
-			 System.out.println("-----------------------------"); //debugging
-			 
+			 }			 
 		 }
 		 return true;
+	 } 
+	 
+	 //Exercise 9
+	 public int[] getExponents() {
+		 int[] ExpArray = new int[this.getNumberTerms()];
+		 Boolean new_exp = true;
+		 int realLength = 0;
+		 
+		 for (int i=0; i < this.getNumberTerms(); i++) {
+			 //System.out.println("first i: " + i);
+			 for (int j=0; j < this.getNumberTerms() ; j++) {
+				//check if exponent is already in the ExpArray
+				if (ExpArray[j] == polynomial[i].getExponent()) {
+					new_exp = false;
+				}
+			 }
+			 if (new_exp) {
+				 realLength++;
+				 ExpArray[realLength-1] = polynomial[i].getExponent();
+				 //System.out.println("i: " + i);
+				 //System.out.println("ExpArrayUnformatted: " + Arrays.toString(ExpArray));
+			 }
+		 }
+		 
+		 int[] ExpArrayFormatted = new int[realLength];		 
+		 for (int k=0; k<realLength; k++) {
+			 ExpArrayFormatted[k] = ExpArray[k];
+		 }	 
+		 return ExpArrayFormatted;
 	 }
 	 
-	 public String pToString() {
+	 //Exercise 10
+	 public char[] getVariables() {
+		 char[] VarArray = new char[this.getNumberTerms()];
+		 Boolean new_var = true;
+		 int realLength = 0;
+		 
+		 for (int i=0; i < this.getNumberTerms(); i++) {
+			 //System.out.println("i: " + i);
+			 new_var = true;
+			 for (int j=0; j < this.getNumberTerms() ; j++) {
+				//System.out.println("j: "+j);
+				if (VarArray[j] == polynomial[i].getVariable()) {
+					new_var = false;
+				}
+			 }
+			 if (new_var) {
+				 realLength++;
+				 VarArray[realLength-1] = polynomial[i].getVariable();
+				 //System.out.println("if (new_var) i: " + i);
+				 //System.out.println("VarArrayUnformatted: " + Arrays.toString(VarArray));
+			 }
+		 }
+		 
+		 char[] VarArrayFormatted = new char[realLength];		 
+		 for (int k=0; k<realLength; k++) {
+			 VarArrayFormatted[k] = VarArray[k];
+		 }	 
+		 return VarArrayFormatted;
+	 }
+	 
+	 public Term[] getTerms(char variable, int exponent) {
+		 Term[] TermsRequested = new Term[this.getNumberTerms()];
+		 int realLength = 0;
+		 for (int i=0; i<this.getNumberTerms(); i++) {
+			 if (variable == polynomial[i].getVariable() && exponent == polynomial[i].getExponent()) {
+				 TermsRequested[realLength] = polynomial[i];
+				 realLength++;
+			 }
+		 }
+		 
+		 Term[] TermsRequestedFormatted = new Term[realLength];	
+		 
+		 for (int k=0; k<realLength; k++) {
+			 TermsRequestedFormatted[k] = TermsRequested[k];
+		 }	 
+		 return TermsRequestedFormatted;
+	 }
+	 
+	 //Exercise 11
+	 public Term[] getAllTerms() {
+		 return polynomial;
+	 }
+ 
+ 
+	 //Exercise 13
+	 public String toString() {
 		 String p_string = "";
 			for (int i=0; i < this.getNumberTerms(); i++) {
-				p_string = p_string + polynomial[i].toString() + ", ";
+				p_string = p_string + polynomial[i].toString();
+				if (polynomial[i+1] != null) {
+					p_string = p_string + "+";
+				}
 			}
 		return p_string;
 	 }
-	 
-	 
-// public int[] getExponents(); 
-// public char[] getVariablesl(); 
-// public Term[];
-// getTerms(); 
-// public Term[] getAllTerms();
- 
- 
  
  }
  

@@ -1,5 +1,4 @@
-//import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Driver {
 
@@ -8,12 +7,14 @@ public class Driver {
 		Term t1=null;
 		Term t2=null;
 		Term t3=null;
+		Term t4=null;
 		
 		try {
-			t0 = new Term(3,'x',2);
-			t1 = new Term(-2,'y',3);
-			t2 = new Term(-2,'y',3);
+			t0 = new Term(3,'y',3);
+			t1 = new Term(-2,'y',2);
+			t2 = new Term(4,'x',1);
 			t3 = new Term(8,' ', 0);
+			t4 = new Term(7, 'y', 4);
 			
 		}
 		catch (ExceptionCoefficientZero e) {
@@ -25,48 +26,55 @@ public class Driver {
 		System.out.println("t2: "+ t2);
 		System.out.println("t3: "+ t3);
 		System.out.println("t3 string: " + t3.toString());
-
 		
 		
 		//Exercise 5
 		APolynomial AP = new APolynomial();
 		
-		Term[] inputArray = {t0, t1, t2};
+		Term[] inputArray = {t0, t1, t2, t4};
 		
 		AP.setPolynomial(inputArray);
-		Term[] p1 = AP.getPolynomial();
-		
-		//convert to string
-		String p1_string = "";
-		for (int i=0; i < AP.getNumberTerms(); i++) {
-			p1_string = p1_string + p1[i].toString() + ", ";
-		}
-		System.out.println("p1: " + p1_string);
-		System.out.println("p1 length: " + AP.getNumberTerms());
-		
+
+		System.out.println("poly init: " + AP.toString());
+		System.out.println("p length: " + AP.getNumberTerms());
 		
 		
 		//Exercise 6
 		AP.addTerm(t3);
-		Term[] p2 = AP.getPolynomial();
+		AP.addTerm(t2);
+
+		System.out.println("poly post add x2: " + AP.toString());
+		System.out.println("p length: " + AP.getNumberTerms());
 		
-		//convert to string
-		String p2_string = "";
-		for (int i=0; i < AP.getNumberTerms(); i++) {
-			p2_string = p2_string + p2[i].toString() + ", ";
-		}
-		System.out.println("p2: " + p2_string);
-		System.out.println("p2 length: " + AP.getNumberTerms());
 		
-		/*
 		//Exercise 8
-		AP.addTerm(t1);
+
+		AP.removeTerm(t3);
+				
+		System.out.println("poly post remove: " + AP.toString());
+		System.out.println("p length: " + AP.getNumberTerms());
 		
-		System.out.println(" "); //debugging 
-		AP.removeTerm(t1);
-		System.out.println(AP.getPolynomial());
-	
-		*/
+		//Exercise 9
+		//
+		//
+		int[] myExpArray = AP.getExponents();
+		System.out.println("ExpArray: " + Arrays.toString(myExpArray));
+		
+
+		AP.addTerm(t3);
+		System.out.println("poly: " + AP.toString());
+		char[] myVarArray = AP.getVariables();
+		System.out.println("poly: " + AP.toString());
+		System.out.println("VarArray: " + Arrays.toString(myVarArray));
+
+		
+		//Exercise 11
+		Term[] myTermsRequested = AP.getTerms(' ', 0);
+		System.out.println("TermsRequested: " + Arrays.toString(myTermsRequested));
+		
+		//Exercise 14
+		System.out.println("----------------------");
+		System.out.println("----------------------");
 	}
 	
 	

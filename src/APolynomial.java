@@ -1,6 +1,7 @@
 import java.util.Arrays;
- 
- public class APolynomial implements Polynomial {
+
+//Exercise 5
+public class APolynomial implements Polynomial {
  
 	 private Term[] polynomial = new Term[100];
 	 //private int polynomialLength = polynomial.length;
@@ -17,7 +18,7 @@ import java.util.Arrays;
 			 System.out.println("polynomial exceeds max array length of 100");
 	 }
 	 
-	 //exercise 6
+	 //Exercise 6
 	 public boolean addTerm(Term t) {
 		 if (polynomial.length <= 100){
 			 int insertIndex = this.getNumberTerms(); 
@@ -30,7 +31,7 @@ import java.util.Arrays;
 		 }
 	 }
 	 
-	 //exercise 7
+	 //Exercise 7
 	 public int getNumberTerms() {
 		 int count = 0;
 		 for (int i=0; i < polynomial.length; i++) {
@@ -39,7 +40,7 @@ import java.util.Arrays;
 		 return count;
 	 }
 
-	 
+	 //Exercise 8
 	 public boolean removeTerm(Term t) {
 		 for (int i = 0; i < this.getNumberTerms(); i++) {
 			 if (t.getCoefficient() == polynomial[i].getCoefficient() && t.getVariable() == polynomial[i].getVariable() && t.getExponent() == polynomial[i].getExponent()) {
@@ -111,6 +112,7 @@ import java.util.Arrays;
 		 return VarArrayFormatted;
 	 }
 	 
+	 //Exercise 11
 	 public Term[] getTerms(char variable, int exponent) {
 		 Term[] TermsRequested = new Term[this.getNumberTerms()];
 		 int realLength = 0;
@@ -129,7 +131,7 @@ import java.util.Arrays;
 		 return TermsRequestedFormatted;
 	 }
 	 
-	 //Exercise 11
+	 //Exercise 12
 	 public Term[] getAllTerms() {
 		 return polynomial;
 	 }

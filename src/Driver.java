@@ -3,12 +3,14 @@ import java.util.Arrays;
 public class Driver {
 
 	public static void main(String[] args) {	
+		
 		Term t0=null;
 		Term t1=null;
 		Term t2=null;
 		Term t3=null;
 		Term t4=null;
 		
+		//Exercises 1,2,3
 		try {
 			t0 = new Term(3,'y',3);
 			t1 = new Term(-2,'y',2);
@@ -20,11 +22,12 @@ public class Driver {
 		catch (ExceptionCoefficientZero e) {
 		}
 		
-
 		System.out.println("t0: "+ t0);
 		System.out.println("t1: "+ t1);
 		System.out.println("t2: "+ t2);
 		System.out.println("t3: "+ t3);
+		
+		//Exercise 4
 		System.out.println("t3 string: " + t3.toString());
 		
 		
@@ -33,6 +36,7 @@ public class Driver {
 		
 		Term[] inputArray = {t0, t1, t2, t4};
 		
+		//Exercise 1
 		AP.setPolynomial(inputArray);
 
 		System.out.println("poly init: " + AP.toString());
@@ -44,19 +48,17 @@ public class Driver {
 		AP.addTerm(t2);
 
 		System.out.println("poly post add x2: " + AP.toString());
+		
+		//Exercises 6, 7
 		System.out.println("p length: " + AP.getNumberTerms());
 		
 		
 		//Exercise 8
-
-		AP.removeTerm(t3);
-				
+		AP.removeTerm(t3);			
 		System.out.println("poly post remove: " + AP.toString());
 		System.out.println("p length: " + AP.getNumberTerms());
 		
 		//Exercise 9
-		//
-		//
 		int[] myExpArray = AP.getExponents();
 		System.out.println("ExpArray: " + Arrays.toString(myExpArray));
 		

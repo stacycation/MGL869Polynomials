@@ -4,6 +4,7 @@ public class Term {
 	private char variable;
 	private int exponent;
 	
+	//Exercises 1,3
     public Term(double coefficient, char variable, int exponent) throws ExceptionCoefficientZero{
     	if (coefficient == 0) {
     		throw new ExceptionCoefficientZero("The terms of the coefficient zero are not valid");
@@ -25,8 +26,8 @@ public class Term {
     	return exponent;
     }
  
+    //Exercise 4
     public String toString() {
-    	//if coefficient == long () // for removing trailing zeros, but prof said not necessary
     	String s_coeff = "";
     	String s_var = "";
     	String exp = "";
